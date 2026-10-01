@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>FitBuddy | Your AI Fitness Coach</title><link rel="stylesheet" href="/static/style.css"></head>
+<body><main class="shell"><header class="top"><a class="brand" href="/">Fit<span>Buddy</span></a><a class="navlink" href="/docs">API docs ↗</a></header>
+<section class="hero"><p class="eyebrow">YOUR PERSONAL WELLNESS COMPANION</p><h1>Build a routine that<br><span>fits your life.</span></h1><p class="intro">A practical 7-day movement plan and a nutrition or recovery tip, tailored to your preferences.</p></section>
+{% if demo_mode %}<div class="notice">Demo mode is active. The app works without an API key using sample plans; add a Gemini API key to enable AI-generated responses.</div>{% endif %}
+{% if error %}<div class="error">{{ error }}</div>{% endif %}
+<form class="panel form-grid" action="/generate-workout" method="post">
+<div class="field"><label for="username">Your name</label><input id="username" name="username" maxlength="100" placeholder="e.g. Alex" required></div>
+<div class="field"><label for="user_id">User ID</label><input id="user_id" name="user_id" minlength="2" maxlength="80" pattern="[A-Za-z0-9_-]+" placeholder="e.g. alex_01" required><small>Letters, numbers, _ and - only.</small></div>
+<div class="field"><label for="age">Age</label><input id="age" name="age" type="number" min="13" max="100" required placeholder="Years"></div>
+<div class="field"><label for="weight">Weight (kg)</label><input id="weight" name="weight" type="number" min="1" max="500" step="0.1" required placeholder="Optional estimate"></div>
+<div class="field"><label for="goal">Fitness goal</label><select id="goal" name="goal" required><option value="general_wellness">General wellness</option><option value="weight_loss">Weight management</option><option value="muscle_gain">Build strength</option><option value="flexibility">Flexibility & mobility</option></select></div>
+<div class="field"><label for="intensity">Preferred intensity</label><select id="intensity" name="intensity" required><option value="low">Low — gentle</option><option value="medium" selected>Medium — moderate</option><option value="high">High — challenging</option></select></div>
+<div class="form-footer"><p>Plans are general wellness guidance. Choose movements that feel comfortable and consult a qualified professional for individual medical concerns.</p><button class="button" type="submit">Generate my 7-day plan <span>→</span></button></div>
+</form><footer>Made for consistency, not perfection. <a href="/docs">Explore the API</a></footer></main></body></html>
